@@ -5,6 +5,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -27,6 +29,16 @@ public class Jugador {
     @Column
     private String posicion;
 
+    @ManyToOne
+    private Equipo equipo;
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
 
     public Jugador() {
     }
@@ -100,8 +112,10 @@ public class Jugador {
         this.rebotes = rebotes;
     }
 
+
+
     @Override
-    public String toString() {
+    public String toString() { //Solo atributos simples, NO los asociados o provocas bucle infinito
         return "Jugador{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
